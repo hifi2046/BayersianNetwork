@@ -115,8 +115,8 @@ def showBN(model,save=False):
     return dot
 showBN(model)
 
-#for cpd in model.get_cpds():
-#    print(cpd)
+for cpd in model.get_cpds():
+    print(cpd)
 predict_data=test.drop(columns=['Survived'],axis=1)
 y_pred = model.predict(predict_data)
 
@@ -124,8 +124,8 @@ y_pred = model.predict(predict_data)
 
 from pgmpy.inference import VariableElimination
 model_infer = VariableElimination(model)
-#q = model_infer.query(variables=['Survived'], evidence={'Fare': 0})
-#print(q['Survived'])
-#q = model_infer.map_query(variables=['Fare','Age','Sex','Pclass','Cabin'], evidence={'Survived': 1})
-#print(q)
+q = model_infer.query(variables=['Survived'], evidence={'Fare': 0})
+print(q)
+q = model_infer.map_query(variables=['Fare','Age','Sex','Pclass','Cabin'], evidence={'Survived': 1})
+print(q)
 
